@@ -51,9 +51,31 @@ h.Y1 <- relH.Y1 / klassenbreiten * 10000
 
 barplot(h.Y1,klassenbreiten, space=0,col="white",
         ylim=c(0,3.5), axes=F, 
-        xlab="Kreditwürdigkeit", ylab="Höhe*10000")
+        xlab="Kreditwürdigkeit", ylab="Höhe*10000", main="Y = 1")
 axis(1, at=intervalle)
 axis(2, at=c(0,0.5,1,1.5,2,2.5,3,3.5))
 
+pdf("loes2_1_kwy1.pdf")
+barplot(h.Y1,klassenbreiten, space=0,col="white",
+        ylim=c(0,3.5), axes=F, 
+        xlab="Kreditwürdigkeit", ylab="Höhe*10000", main="Y = 1")
+axis(1, at=intervalle)
+axis(2, at=c(0,0.5,1,1.5,2,2.5,3,3.5))
+dev.off()
 
+relH.Y0 <- c(2.14,9.14,19.86,24.57,28.57,9.71,3.71,2.0,0.29)/100
+h.Y0 <- relH.Y0 / klassenbreiten * 10000
 
+barplot(h.Y0,klassenbreiten, space=0,col="white",
+        ylim=c(0,4.0), axes=F, 
+        xlab="Kreditwürdigkeit", ylab="Höhe*10000", main="Y = 0")
+axis(1, at=intervalle)
+axis(2, at=c(0,0.5,1,1.5,2,2.5,3,3.5,4.0))
+
+pdf("loes2_1_kwy0.pdf")
+barplot(h.Y0,klassenbreiten, space=0,col="white",
+        ylim=c(0,4.0), axes=F, 
+        xlab="Kreditwürdigkeit", ylab="Höhe*10000", main="Y = 0")
+axis(1, at=intervalle)
+axis(2, at=c(0,0.5,1,1.5,2,2.5,3,3.5,4.0))
+dev.off()
