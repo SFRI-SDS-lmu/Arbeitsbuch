@@ -12,8 +12,9 @@ X1.Y      <- c("Y=1 (schlechte Bonität)","Y=0 (gute Bonität)")
 barplot(X1.Anteile~X1[,3], beside=TRUE, ylim=c(0,0.5), xlab="Laufendes Konto", 
         ylab="Anteile", legend.text=X1.Y, args.legend=c(x=6.5, y=0.5))
 pdf("loes2_1_lk1.pdf")
+par(cex=1.3)
 barplot(X1.Anteile~X1[,3], beside=TRUE, ylim=c(0,0.5), xlab="Laufendes Konto", 
-        ylab="Anteile", legend.text=X1.Y, args.legend=c(x=6.5, y=0.5))
+        ylab="Anteile", legend.text=X1.Y, args.legend=c(x=7, y=0.5))
 dev.off()
 
 # X4 ... Rückzahlung früherer Kredite
@@ -23,6 +24,7 @@ X4 <- cbind(X4.Anteile, c("gut","schlecht"))
 barplot(X4.Anteile~X4[,3], beside=TRUE, ylim=c(0,1), xlab="Frühere Kredite", 
         ylab="Anteile", legend.text=X1.Y, args.legend="topright")
 pdf("loes2_1_fk1.pdf")
+par(cex=1.3)
 barplot(X4.Anteile~X4[,3], beside=TRUE, ylim=c(0,1), xlab="Frühere Kredite", 
         ylab="Anteile", legend.text=X1.Y, args.legend="topright")
 dev.off()
@@ -34,8 +36,9 @@ X5 <- cbind(X5.Anteile, c("privat","beruflich"))
 barplot(X5.Anteile~X5[,3], beside=TRUE, ylim=c(0,1), xlab="Verwendungszweck", 
         ylab="Anteile", legend.text=X1.Y, args.legend=c(x=6, y=1))
 pdf("loes2_1_vz1.pdf")
+par(cex=1.3)
 barplot(X5.Anteile~X5[,3], beside=TRUE, ylim=c(0,1), xlab="Verwendungszweck", 
-        ylab="Anteile", legend.text=X1.Y, args.legend=c(x=6, y=1))
+        ylab="Anteile", legend.text=X1.Y, args.legend=c(x=5, y=1))
 dev.off()
 
 # X3 ... Kredithöhe in Euro
@@ -56,6 +59,7 @@ axis(1, at=intervalle)
 axis(2, at=c(0,0.5,1,1.5,2,2.5,3,3.5))
 
 pdf("loes2_1_kwy1.pdf")
+par(cex=1.3)
 barplot(h.Y1,klassenbreiten, space=0,col="white",
         ylim=c(0,3.5), axes=F, 
         xlab="Kreditwürdigkeit", ylab="Höhe*10000", main="Y = 1")
@@ -73,6 +77,7 @@ axis(1, at=intervalle)
 axis(2, at=c(0,0.5,1,1.5,2,2.5,3,3.5,4.0))
 
 pdf("loes2_1_kwy0.pdf")
+par(cex=1.3)
 barplot(h.Y0,klassenbreiten, space=0,col="white",
         ylim=c(0,4.0), axes=F, 
         xlab="Kreditwürdigkeit", ylab="Höhe*10000", main="Y = 0")
