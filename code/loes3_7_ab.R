@@ -5,11 +5,12 @@
 # Daten einlesen
 daten <- read.table(file="luftschad.txt", header=TRUE, dec=".")
 
-# 1.
+# Aufgabe a)
 
 # Teildatensatz Mai 1999 bis (ausschliesslich) Februar 2016
 teildaten <- daten[101:301,]
 n <- nrow(teildaten)
+n
 
 # check Datumsbereich, keine fehlenden Werte?
 teildaten[1,]
@@ -19,10 +20,11 @@ anzahl.fehlend
 
 # Korrelation innerhalb der Zeitreihen (y_t, y_(t+1) ). 
 
-# Variante 1, "zu Fuss":
-cor(teildaten$Stickoxide[1:(n-1)], teildaten$Stickoxide[2:n], method="pearson")
-# mit der acf() Funktion
+# Variante 1 mit der acf() Funktion
 acf(teildaten$Stickoxide, plot=FALSE, lag.max=1, type="correlation")
+
+# Variante 2 mit der cor() Funktion
+cor(teildaten$Stickoxide[1:(n-1)], teildaten$Stickoxide[2:n], method="pearson")
 
 # Analog für alle anderen Variablen
 cor(teildaten$CO[1:(n-1)], teildaten$CO[2:n], method="pearson")
@@ -31,15 +33,14 @@ cor(teildaten$Lufttemperatur[1:(n-1)], teildaten$Lufttemperatur[2:n], method="pe
 cor(teildaten$Ozon[1:(n-1)], teildaten$Ozon[2:n], method="pearson")
 cor(teildaten$SO2[1:(n-1)], teildaten$SO2[2:n], method="pearson")
 
-# Stärkste Korrelation bei SO2 (dann Lufttemperatur), geringste bei Ozon (dann Feinstaub)
 
-# 2. Jetzt alle Daten verwenden. Die Option use="pairwise.complete.obs" 
-#    verwendet jeweils alle möglichen Beobachtungspaare. Wir berechnen gleich die ganze 
-#    Korrelationsmatrix ohne die Variable Datum
-cor(daten[,2:7], use="pairwise.complete.obs")
-# Zum Vergleich mit der Option use="complete.obs", bei der Beobachtungen verwendet werden, 
+# Aufgabe b)
+
+# Jetzt alle Daten verwenden!
+
+
+# Mit Hilfe der Option use="complete.obs" werden alle Beobachtungen verwendet,  
 # die bei keiner der 6 Variablen einen fehlenden Wert haben.
 cor(daten[,2:7], use="complete.obs")
 sum(complete.cases(daten))
-# Option complete.obs ist sicherer, die andere Option kann zu Problemen führen ohne das 
-# hier genauer zu besprechen.
+
