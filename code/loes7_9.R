@@ -15,8 +15,8 @@ z.dichte <- dnorm(x)
 
 # Zunächst exemplarisch für n=100
 
-n <- 100
 # Ziehe n=100 Zufallszahlen aus N(0,1) Verteilung 
+n <- 100
 s <- rnorm(n)
 
 # Zeichne Kerndichteschätzer und Dichte in einer Grafik
