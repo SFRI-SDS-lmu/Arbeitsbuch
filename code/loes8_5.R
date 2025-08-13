@@ -2,10 +2,10 @@
 # Lösung Aufgabe 8.5
 #################################################
 
-# Abbildungen 8.3 bis 8.5. sind Darstellungen der Dichten von bivariaten 
-# Normalverteilungen
-
-# Dichte der bivariaten NV, siehe Buch, Kapitel 8.6
+# Funktion bivdichte.nv
+# Implmentiere zunächst eine allgemeine Funktion zur Berechnung der 
+# Dichte der bivariaten NV, 
+# siehe Fahrmeir et al. (2024), Kapitel 8.6
 
 bivdichte.nv <- function(x,y,mu1,mu2,sigma1,sigma2,rho){
   
@@ -20,179 +20,150 @@ bivdichte.nv <- function(x,y,mu1,mu2,sigma1,sigma2,rho){
   return(d)
 }
 
+# Verwende als Grid/Raster jeweils (-3,+3)
+# In der Matrix z werden später die Werte der Dichte gespeichert
+x <- seq(from=-3,to=3, by=0.2)
+y <- seq(from=-3,to=3, by=0.2)
+z <- matrix(nrow=length(x), ncol=length(y), data=0)
 
-# Abb. 8.3, Grid/Raster jeweils (-3,+3)
+
+# Aufgabe a) und b)
+# Visualisiere die vier Dichten mit Hilfe der R Funktionen
+# persp, contour und image
+
+
+# ERSTE DICHTE
 mu1 <- 0
 mu2 <- 0
 sigma1 <- 1
 sigma2 <- 1
 rho <- 0
 
-x <- seq(from=-3,to=3, by=0.2)
-y <- seq(from=-3,to=3, by=0.2)
-z <- matrix(nrow=length(x), ncol=length(y), data=0)
+# Verwende eine Doppelschleife zur Berechnung der Werte der Dichte 
 for (i in 1:length(x)) {
   for (j in 1:length(y)){
     z[i,j] <- bivdichte.nv(x[i], y[j], mu1, mu2, sigma1, sigma2, rho)
   }
 }
+# Verwende alternativ die outer Funktion zur Vermeidung der Doppelschleife
+z <- outer(x, y, bivdichte.nv, mu1, mu2, sigma1, sigma2, rho)
 
-persp(x,y,z, ticktype="detailed", 
-      theta=30, phi=15, shade=0.1, expand=0.5, zlim=c(0,0.2), r=10)
-pdf("loes_8_5_abb83.pdf")
+
+
+# Visualisiere die Dichte
+# ACHTUNG: 
+# Falls Ausgabe auf Bildschirm gewünscht (anstelle Grafik im pdf Format),
+# dann nur die persp, contour und image Befehle ausführen
+
+# Zu den Parametern theta, phi, shade usw. konsultiere man die ensprechende
+# Hilfe, z.B. mit help(persp)
+
+pdf("loes_8_5_persp_1.pdf")
 par(cex.axis=1.2)
 persp(x,y,z, ticktype="detailed", 
       theta=30, phi=15, shade=0.1, expand=0.5, zlim=c(0,0.2), r=10)
 dev.off()
-contour(x,y,z, zlim=c(0,0.2))
-pdf("loes_8_5_abb83_2.pdf")
+
+pdf("loes_8_5_contour_1.pdf")
 par(cex=1.2)
 contour(x,y,z, zlim=c(0,0.2))
 dev.off()
-image(x,y,z)
-pdf("loes_8_5_abb83_3.pdf")
+
+pdf("loes_8_5_image_1.pdf")
 par(cex=1.2)
 image(x,y,z)
 dev.off()
 
 
-# Abb. 8.4, Grid/Raster jeweils (-3,+3)
+# ZWEITE DICHTE  
 mu1 <- 0
 mu2 <- 0
 sigma1 <- 1.5
 sigma2 <- 1
 rho <- 0
 
-# Gleiches Raster
-# x <- seq(from=-3,to=3, by=0.2)
-# y <- seq(from=-3,to=3, by=0.2)
+z <- outer(x, y, bivdichte.nv, mu1, mu2, sigma1, sigma2, rho)
 
+# Visualisiere die Dichte
+# ACHTUNG: 
+# Falls Ausgabe auf Bildschirm gewünscht (anstelle Grafik im pdf Format),
+# dann nur die persp, contour und image Befehle ausführen
 
-# Der outer - Befehl vereinfacht die Auswertung der bivariaten Dichte an jeder
-# Kombination von x und y Koordinaten un dspart die Schleife
-
-z <- outer(x, y, bivdichte.nv, mu1, mu2, sigma1, sigma2, rho )
-persp(x,y,z, ticktype="detailed", 
-      theta=30, phi=15, shade=0.1, expand=0.5, zlim=c(0,0.2), r=10)
-pdf("loes_8_5_abb84.pdf")
-par(cex=1.2)
+pdf("loes_8_5_persp_2.pdf")
+par(cex.axis=1.2)
 persp(x,y,z, ticktype="detailed", 
       theta=30, phi=15, shade=0.1, expand=0.5, zlim=c(0,0.2), r=10)
 dev.off()
-contour(x,y,z, zlim=c(0,0.2))
-pdf("loes_8_5_abb84_2.pdf")
+
+pdf("loes_8_5_contour_2.pdf")
 par(cex=1.2)
 contour(x,y,z, zlim=c(0,0.2))
 dev.off()
-image(x,y,z)
-pdf("loes_8_5_abb84_3.pdf")
+
+pdf("loes_8_5_image_2.pdf")
 par(cex=1.2)
 image(x,y,z)
 dev.off()
 
 
-
-# Abb. 8.5, Grid/Raster jeweils (-3,+3)
+# DRITTE DICHTE
 mu1 <- 0
 mu2 <- 0
 sigma1 <- 1
 sigma2 <- 1
 rho <- 0.8
 
-z <- outer(x, y, bivdichte.nv, mu1, mu2, sigma1, sigma2, rho )
+z <- outer(x, y, bivdichte.nv, mu1, mu2, sigma1, sigma2, rho)
+
+# Visualisiere die Dichte
+# ACHTUNG: 
+# Falls Ausgabe auf Bildschirm gewünscht (anstelle Grafik im pdf Format),
+# dann nur die persp, contour und image Befehle ausführen
+
+pdf("loes_8_5_persp_3.pdf")
+par(cex.axis=1.2)
 persp(x,y,z, ticktype="detailed", 
-      theta=30, phi=15, shade=0.1, expand=0.5, zlim=c(0,0.3), r=10)
-pdf("loes_8_5_abb85.pdf")
-par(cex=1.2)
-persp(x,y,z, ticktype="detailed", 
-      theta=30, phi=15, shade=0.1, expand=0.5, zlim=c(0,0.3), r=10)
+      theta=30, phi=15, shade=0.1, expand=0.5, zlim=c(0,0.2), r=10)
 dev.off()
-contour(x,y,z, zlim=c(0,0.3))
-pdf("loes_8_5_abb85_2.pdf")
+
+pdf("loes_8_5_contour_3.pdf")
 par(cex=1.2)
-contour(x,y,z, zlim=c(0,0.3))
+contour(x,y,z, zlim=c(0,0.2))
 dev.off()
-image(x,y,z)
-pdf("loes_8_5_abb85_3.pdf")
+
+pdf("loes_8_5_image_3.pdf")
 par(cex=1.2)
 image(x,y,z)
 dev.off()
 
 
-# Abb. 8.6, Grid/Raster jeweils (-3,+3)
+# VIERTE DICHTE
 mu1 <- 0
 mu2 <- 0
 sigma1 <- 1
 sigma2 <- 1
 rho <- -0.8
 
-z <- outer(x, y, bivdichte.nv, mu1, mu2, sigma1, sigma2, rho )
+z <- outer(x, y, bivdichte.nv, mu1, mu2, sigma1, sigma2, rho)
+
+# Visualisiere die Dichte
+# ACHTUNG: 
+# Falls Ausgabe auf Bildschirm gewünscht (anstelle Grafik im pdf Format),
+# dann nur die persp, contour und image Befehle ausführen
+
+pdf("loes_8_5_persp_4.pdf")
+par(cex.axis=1.2)
 persp(x,y,z, ticktype="detailed", 
-      theta=30, phi=15, shade=0.1, expand=0.5, zlim=c(0,0.3), r=10)
-pdf("loes_8_5_abb86.pdf")
-par(cex=1.2)
-persp(x,y,z, ticktype="detailed", 
-      theta=30, phi=15, shade=0.1, expand=0.5, zlim=c(0,0.3), r=10)
+      theta=30, phi=15, shade=0.1, expand=0.5, zlim=c(0,0.2), r=10)
 dev.off()
-contour(x,y,z, zlim=c(0,0.3))
-pdf("loes_8_5_abb86_2.pdf")
+
+pdf("loes_8_5_contour_4.pdf")
 par(cex=1.2)
-contour(x,y,z, zlim=c(0,0.3))
+contour(x,y,z, zlim=c(0,0.2))
 dev.off()
-image(x,y,z)
-pdf("loes_8_5_abb86_3.pdf")
+
+pdf("loes_8_5_image_4.pdf")
 par(cex=1.2)
 image(x,y,z)
 dev.off()
-
-
-
-
-# 2. je ein Beispiel für einen contour und einen image plot
-# Abb. 8.5, Grid/Raster jeweils (-3,+3)
-#mu1 <- 0
-#mu2 <- 0
-#sigma1 <- 1
-#sigma2 <- 1
-#rho <- 0.8
-
-#z <- outer(x, y, bivdichte.nv, mu1, mu2, sigma1, sigma2, rho )
-#contour(x,y,z, zlim=c(0,0.3))
-#pdf("loes_8_5_abb85_2.pdf")
-#par(cex=1.2)
-#contour(x,y,z, zlim=c(0,0.3))
-#dev.off()
-
-
-# Abb. 8.6, Grid/Raster jeweils (-3,+3)
-#mu1 <- 0
-#mu2 <- 0
-#sigma1 <- 1
-#sigma2 <- 1
-#rho <- -0.8
-
-#z <- outer(x, y, bivdichte.nv, mu1, mu2, sigma1, sigma2, rho )
-#image(x,y,z)
-#pdf("loes_8_5_abb86_2.pdf")
-#par(cex=1.2)
-#image(x,y,z)
-#dev.off()
-
-
-# check
-mu1 <- 1
-mu2 <- 4
-sigma1 <- 2
-sigma2 <- 3
-rho <- 0.6
-Sigma <- matrix(nrow=2,ncol=2,byrow=T,
-                data=c(sigma1^2,rho*sigma1*sigma2,rho*sigma1*sigma2,sigma2^2))
-x <- c(2,4)
-
-dmvnorm(x, mean=c(mu1,mu2), sigma=Sigma)
-
-bivdichte.nv(x[1], x[2], mu1, mu2, sigma1, sigma2, rho)
-
-
-
 
