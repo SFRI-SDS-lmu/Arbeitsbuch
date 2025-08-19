@@ -19,7 +19,7 @@ stdabw <- sd(daten$nmqm)
 # Chi Quadrat Test mit 5 Intervallen
 
 # Definiere Intervalle 
-# mit Hilfe des cut-Befehl definieren wir die Faktorvariable nmqm.1
+# mit Hilfe des cut-Befehls definieren wir die Faktorvariable nmqm.1
 grenzen.1 <- c(-Inf, 7, 11, 15, 17, Inf)
 nmqm.1 <- cut(daten$nmqm, breaks=grenzen.1)
 
@@ -41,14 +41,14 @@ stat.1 <- sum( (table.1-n*erwartet.1)^2 / (n*erwartet.1) )
 stat.1
 
 
-# p-value, Freiheitsgrade korrigieren
+# Bestimme den  p-Wert unter Beachtung der Freiheitsgrade Korrektur
 1-pchisq(erg.1$statistic, df=anzahl.intervalle.1-1-2)
 
 
 # Chi Quadrat Test mit 28 Intervallen
 
 # Definiere Intervalle 
-# mit Hilfe des cut-Befehl definieren wir die Faktorvariable nmqm.2
+# mit Hilfe des cut-Befehls definieren wir die Faktorvariable nmqm.2
 grenzen.2 <- c(-Inf, seq(from=5, to=18, by=0.5),Inf)
 nmqm.2 <- cut(daten$nmqm, breaks=grenzen.2)
 
@@ -69,7 +69,7 @@ erg.2$statistic
 stat.2 <- sum( (table.2-n*erwartet.2)^2 / (n*erwartet.2) )
 stat.2
 
-# p-value, Freiheitsgrade korrigieren
+# Bestimme den  p-Wert unter Beachtung der Freiheitsgrade Korrektur
 1-pchisq(erg.2$statistic, df=anzahl.intervalle.2-1-2)
 
 
