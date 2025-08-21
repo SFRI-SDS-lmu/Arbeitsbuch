@@ -8,7 +8,7 @@
 # Lösche alle möglicherweise vorhandenen Objekte im Arbeitsbereich
 rm(list = ls())
 
-# Daten einlesen
+# Daten einlesen und im data.frame 'daten' speichern
 daten <- read.table(file="mietspiegel2015.txt", header=TRUE, dec=".")
 
 # Logarithmierte Nettomiete und Nettomiete/qm erzeugen
@@ -27,10 +27,12 @@ lm.1 <- lm(lognm ~ wfl+bj+wohngut+wohnbest+badkach0+kueche,
            data=daten)
 print(summary(lm.1))
 
-# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt
+# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt)
+# 'save.1' einthält zu jeder Beobachtung im Datensatz eine Prognose,
+# genauer die mit Hilfe des linearen Modells 'lm.1' erzielte Prognose
 save.1 <- predict(lm.1)
 
-# Prognose für die in der Aufgabe speziell angegebene Wohnung
+# Prognose für die in der Aufgabe speziell angegebene Musterwohnung
 prog.1 <- predict(lm.1, newdata=data.frame(wfl=80,bj=1990,wohngut=0,
                                   wohnbest=1,badkach0=1,kueche=0))
 prog.1 <- exp(prog.1)
@@ -41,10 +43,10 @@ lm.2 <- lm(lognm ~ wfl+bj+wohngut+wohnbest+badkach0+kueche,
            data=daten.20)
 print(summary(lm.2))
 
-# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt
+# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt)
 save.2 <- predict(lm.2)
 
-# Prognose für die in der Aufgabe speziell angegebene Wohnung
+# Prognose für die in der Aufgabe speziell angegebene Musterwohnung
 prog.2 <- predict(lm.2, newdata=data.frame(wfl=80,bj=1990,wohngut=0,
                                            wohnbest=1,badkach0=1,kueche=0))
 prog.2 <- exp(prog.2)
@@ -58,10 +60,10 @@ lm.3 <- lm(nm ~ wfl+bj+wohngut+wohnbest+badkach0+kueche,
            data=daten)
 print(summary(lm.3))
 
-# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt
+# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt)
 save.3 <- predict(lm.3)
 
-# Prognose für die in der Aufgabe speziell angegebene Wohnung
+# Prognose für die in der Aufgabe speziell angegebene Musterwohnung
 prog.3 <- predict(lm.3, newdata=data.frame(wfl=80,bj=1990,wohngut=0,
                                            wohnbest=1,badkach0=1,kueche=0))
 prog.3
@@ -71,10 +73,10 @@ lm.4 <- lm(nm ~ wfl+bj+wohngut+wohnbest+badkach0+kueche,
            data=daten.20)
 print(summary(lm.4))
 
-# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt
+# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt)
 save.4 <- predict(lm.4)
 
-# Prognose für die in der Aufgabe speziell angegebene Wohnung
+# Prognose für die in der Aufgabe speziell angegebene Musterwohnung
 prog.4 <- predict(lm.4, newdata=data.frame(wfl=80,bj=1990,wohngut=0,
                                            wohnbest=1,badkach0=1,kueche=0))
 prog.4
@@ -89,10 +91,10 @@ lm.5 <- lm(lognm ~ wfl+bj+wohngut+wohnbest+badkach0+kueche+I(bj^2),
            data=daten)
 print(summary(lm.5))
 
-# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt
+# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt)
 save.5 <- predict(lm.5)
 
-# Prognose für die in der Aufgabe speziell angegebene Wohnung
+# Prognose für die in der Aufgabe speziell angegebene Musterwohnung
 prog.5 <- predict(lm.5, newdata=data.frame(wfl=80,bj=1990,wohngut=0,
                                            wohnbest=1,badkach0=1,kueche=0))
 prog.5 <- exp(prog.5)
@@ -103,10 +105,10 @@ lm.6 <- lm(lognm ~ wfl+bj+wohngut+wohnbest+badkach0+kueche+I(bj^2),
            data=daten.20)
 print(summary(lm.6))
 
-# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt
+# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt)
 save.6 <- predict(lm.6)
 
-# Prognose für die in der Aufgabe speziell angegebene Wohnung
+# Prognose für die in der Aufgabe speziell angegebene Musterwohnung
 prog.6 <- predict(lm.6, newdata=data.frame(wfl=80,bj=1990,wohngut=0,
                                            wohnbest=1,badkach0=1,kueche=0))
 prog.6 <- exp(prog.6)
@@ -117,10 +119,10 @@ lm.7 <- lm(nm ~ wfl+bj+wohngut+wohnbest+badkach0+kueche+I(bj^2),
            data=daten)
 print(summary(lm.7))
 
-# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt
+# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt)
 save.7 <- predict(lm.7)
 
-# Prognose für die in der Aufgabe speziell angegebene Wohnung
+# Prognose für die in der Aufgabe speziell angegebene Musterwohnung
 prog.7 <- predict(lm.7, newdata=data.frame(wfl=80,bj=1990,wohngut=0,
                                            wohnbest=1,badkach0=1,kueche=0))
 prog.7
@@ -130,10 +132,10 @@ lm.8 <- lm(nm ~ wfl+bj+wohngut+wohnbest+badkach0+kueche+I(bj^2),
            data=daten.20)
 print(summary(lm.8))
 
-# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt
+# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt)
 save.8 <- predict(lm.8)
 
-# Prognose für die in der Aufgabe speziell angegebene Wohnung
+# Prognose für die in der Aufgabe speziell angegebene Musterwohnung
 prog.8 <- predict(lm.8, newdata=data.frame(wfl=80,bj=1990,wohngut=0,
                                            wohnbest=1,badkach0=1,kueche=0))
 prog.8
@@ -149,10 +151,10 @@ lm.11 <- lm(lognmqm ~ wfl+bj+wohngut+wohnbest+badkach0+kueche,
            data=daten)
 print(summary(lm.11))
 
-# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt
+# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt)
 save.11 <- predict(lm.11)
 
-# Prognose für die in der Aufgabe speziell angegebene Wohnung
+# Prognose für die in der Aufgabe speziell angegebene Musterwohnung
 prog.11 <- predict(lm.11, newdata=data.frame(wfl=80,bj=1990,wohngut=0,
                                            wohnbest=1,badkach0=1,kueche=0))
 prog.11 <- exp(prog.11)
@@ -164,10 +166,10 @@ lm.12 <- lm(lognmqm ~ wfl+bj+wohngut+wohnbest+badkach0+kueche,
            data=daten.20)
 print(summary(lm.12))
 
-# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt
+# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt)
 save.12 <- predict(lm.12)
 
-# Prognose für die in der Aufgabe speziell angegebene Wohnung
+# Prognose für die in der Aufgabe speziell angegebene Musterwohnung
 prog.12 <- predict(lm.12, newdata=data.frame(wfl=80,bj=1990,wohngut=0,
                                            wohnbest=1,badkach0=1,kueche=0))
 prog.12 <- exp(prog.12)
@@ -179,10 +181,10 @@ lm.13 <- lm(nmqm ~ wfl+bj+wohngut+wohnbest+badkach0+kueche,
            data=daten)
 print(summary(lm.13))
 
-# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt
+# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt)
 save.13 <- predict(lm.13)
 
-# Prognose für die in der Aufgabe speziell angegebene Wohnung
+# Prognose für die in der Aufgabe speziell angegebene Musterwohnung
 prog.13 <- predict(lm.13, newdata=data.frame(wfl=80,bj=1990,wohngut=0,
                                            wohnbest=1,badkach0=1,kueche=0))
 prog.13
@@ -193,10 +195,10 @@ lm.14 <- lm(nmqm ~ wfl+bj+wohngut+wohnbest+badkach0+kueche,
            data=daten.20)
 print(summary(lm.14))
 
-# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt
+# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt)
 save.14 <- predict(lm.14)
 
-# Prognose für die in der Aufgabe speziell angegebene Wohnung
+# Prognose für die in der Aufgabe speziell angegebene Musterwohnung
 prog.14 <- predict(lm.14, newdata=data.frame(wfl=80,bj=1990,wohngut=0,
                                            wohnbest=1,badkach0=1,kueche=0))
 prog.14
@@ -207,10 +209,10 @@ lm.15 <- lm(lognmqm ~ wfl+bj+wohngut+wohnbest+badkach0+kueche+I(bj^2),
            data=daten)
 print(summary(lm.15))
 
-# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt
+# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt)
 save.15 <- predict(lm.15)
 
-# Prognose für die in der Aufgabe speziell angegebene Wohnung
+# Prognose für die in der Aufgabe speziell angegebene Musterwohnung
 prog.15 <- predict(lm.15, newdata=data.frame(wfl=80,bj=1990,wohngut=0,
                                            wohnbest=1,badkach0=1,kueche=0))
 prog.15 <- exp(prog.15)
@@ -223,10 +225,10 @@ lm.16 <- lm(lognmqm ~ wfl+bj+wohngut+wohnbest+badkach0+kueche+I(bj^2),
            data=daten.20)
 print(summary(lm.16))
 
-# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt
+# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt)
 save.16 <- predict(lm.16)
 
-# Prognose für die in der Aufgabe speziell angegebene Wohnung
+# Prognose für die in der Aufgabe speziell angegebene Musterwohnung
 prog.16 <- predict(lm.16, newdata=data.frame(wfl=80,bj=1990,wohngut=0,
                                            wohnbest=1,badkach0=1,kueche=0))
 prog.16 <- exp(prog.16)
@@ -238,10 +240,10 @@ lm.17 <- lm(nmqm ~ wfl+bj+wohngut+wohnbest+badkach0+kueche+I(bj^2),
            data=daten)
 print(summary(lm.17))
 
-# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt
+# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt)
 save.17 <- predict(lm.17)
 
-# Prognose für die in der Aufgabe speziell angegebene Wohnung
+# Prognose für die in der Aufgabe speziell angegebene Musterwohnung
 prog.17 <- predict(lm.17, newdata=data.frame(wfl=80,bj=1990,wohngut=0,
                                            wohnbest=1,badkach0=1,kueche=0))
 prog.17
@@ -252,10 +254,10 @@ lm.18 <- lm(nmqm ~ wfl+bj+wohngut+wohnbest+badkach0+kueche+I(bj^2),
            data=daten.20)
 print(summary(lm.18))
 
-# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt
+# Speichere die Prognosen ab (wird später in Aufgabe e) benötigt)
 save.18 <- predict(lm.18)
 
-# Prognose für die in der Aufgabe speziell angegebene Wohnung
+# Prognose für die in der Aufgabe speziell angegebene Musterwohnung
 prog.18 <- predict(lm.18, newdata=data.frame(wfl=80,bj=1990,wohngut=0,
                                            wohnbest=1,badkach0=1,kueche=0))
 prog.18
@@ -264,29 +266,40 @@ prog.18
 ################################ AUFGABE e) ####################################
 
 # Prognosen mit allen Wohnungen
+# Fasse die im Zusammenhang mit den Aufgaben a)-d) weiter oben 
+# gespeichteren Prognosevektoren 'save.1', 'save.3', usw. im data.frame
+# 'prognosen' zusammen
+# 'prognosen' enthält nur die Prognosen basierend auf den Modellen mit allen
+# Beobachtungen
 prognosen <- data.frame(save.1, save.3, save.5, save.7,
                         save.11, save.13, save.15, save.17)
               
 
-# ohne die 20
+# Zusammenfassung der Prognosen basierend auf den Daten ohne die 20 teuersten
+# Wohnungen im data.frame 'prognosen.20'.
 prognosen.20 <- data.frame(save.2, save.4, save.6, save.8,
                            save.12, save.14, save.16, save.18)
 
+# Bestimme sämtliche paarweisen Korrelationen
+# Basierend auf Modellen mit allen Beobachtungen
 print(cor(prognosen), digits=1)
+# Basierend auf Modellen ohne die 20 teuersten Wohnungen
 print(cor(prognosen.20), digits=1)
 
-# grafisch mit Scatterplot
-plot(prognosen)
-plot(prognosen.20)
-
+# Grafische Darstellung mit Hilfe einer Scatterplot Matrix
+# ACHTUNG: 
+# Falls Ausgabe auf Bildschirm gewünscht (anstelle Grafik im pdf Format),
+# dann nur jeweils den plot Befehl ausführen
 pdf("loes12_4_scatter_gesamt.pdf")
 par(cex=1.5)
 plot(prognosen)
+par(cex=1)
 dev.off()
 
 pdf("loes12_4_scatter_teil.pdf")
 par(cex=1.5)
 plot(prognosen.20)
+par(cex=1)
 dev.off()
 
 
