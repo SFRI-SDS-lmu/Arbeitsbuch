@@ -93,17 +93,28 @@ summary(daten$nm[daten$bj.cat==2])
 tapply(daten$nm,daten$bj.cat,summary) 
 
 
-# Histogramme nebeneinander zeichnen
-# ACHTUNG: 
-# Falls Ausgabe auf Bildschirm gewünscht (anstelle Grafik im pdf Format),
-# dann nur die 'par' und 'hist' Befehle ausführen
-pdf("loes2_8_hist_nm_by_bj_cat.pdf")
+# Histogramme nebeneinander zeichnen am Bildschirm
+# Falls separate Plots gewünscht dann 'par Befehle nicht ausführen 
 par(mfrow = c(1, 2))
-hist(daten_bj1$nm, main="Baujahr > 1958", xlab="Nettomiete", ylab="Dichte",
+hist(daten_bj1$nm, main="Baujahr < 1958", xlab="Nettomiete", ylab="Dichte",
      xlim=c(0,6000), freq=FALSE)
-hist(daten_bj2$nm, main="Baujahr <= 1958", xlab="Nettomiete", ylab="Dichte",
+hist(daten_bj2$nm, main="Baujahr 1958 und jünger", xlab="Nettomiete", ylab="Dichte",
      freq=FALSE)
 par(mfrow = c(1, 1))
+
+# Histogramme nochmal im pdf Format erzeugen und speichern 
+pdf("loes2_8_hist_nm_by_bj_cat1.pdf")
+par(cex=1.5)
+hist(daten_bj1$nm, main="Baujahr < 1958", xlab="Nettomiete", ylab="Dichte",
+     xlim=c(0,6000), freq=FALSE)
+par(cex=1)
+dev.off()
+
+pdf("loes2_8_hist_nm_by_bj_cat2.pdf")
+par(cex=1.5)
+hist(daten_bj2$nm, main="Baujahr 1958 und jünger", xlab="Nettomiete", ylab="Dichte",
+     freq=FALSE)
+par(cex=1)
 dev.off()
 
 
@@ -112,7 +123,9 @@ dev.off()
 # Falls Ausgabe auf Bildschirm gewünscht (anstelle Grafik im pdf Format),
 # dann nur den 'boxplot' Befehl ausführen
 pdf("loes2_8_boxplot_nm_by_bj_cat.pdf")
-boxplot(daten$nm~daten$bj.cat, xlab=" ", ylab="Nettomiete")
+par(cex=1.5)
+boxplot(daten$nm~daten$bj.cat, xlab=" ", main="Boxplots Nettomiete", ylab="Nettomiete")
+par(cex=1)
 dev.off()
 
 
@@ -135,17 +148,28 @@ IQR(daten_bj1$nmqm)
 IQR(daten_bj2$nmqm)
 
 
-# Histogramme nebeneinander zeichnen
-# Verwende die vorher erzeugten Teildatensätze
-# ACHTUNG: 
-# Falls Ausgabe auf Bildschirm gewünscht (anstelle Grafik im pdf Format),
-# dann nur die 'par' und 'hist' Befehle ausführen
-pdf("loes2_8_hist_nmqm_by_bj_cat.pdf")
+# Histogramme nebeneinander zeichnen am Bildschirm
+# Falls separate Plots gewünscht dann 'par Befehle nicht ausführen 
 par(mfrow = c(1, 2))
-hist(daten_bj1$nmqm, main="Baujahr > 1958", xlab="Nettomiete pro qm", 
+hist(daten_bj1$nmqm, main="Baujahr < 1958", xlab="Nettomiete pro qm", 
      ylab="Dichte", xlim=c(0,25), freq=FALSE)
-hist(daten_bj2$nmqm, main="Baujahr <= 1958", xlab="Nettomiete pro qm", 
+hist(daten_bj2$nmqm, main="Baujahr 1958 und jünger", xlab="Nettomiete pro qm", 
      ylab="Dichte", xlim=c(0,25), freq=FALSE)
+par(mfrow = c(1, 1))
+
+# Histogramme nochmal im pdf Format erzeugen und speichern 
+pdf("loes2_8_hist_nmqm_by_bj_cat1.pdf")
+par(cex=1.5)
+hist(daten_bj1$nmqm, main="Baujahr < 1958", xlab="Nettomiete pro qm", 
+     ylab="Dichte", xlim=c(0,25), freq=FALSE)
+par(cex=1)
+dev.off()
+
+pdf("loes2_8_hist_nmqm_by_bj_cat2.pdf")
+par(cex=1.5)
+hist(daten_bj2$nmqm, main="Baujahr 1958 und jünger", xlab="Nettomiete pro qm", 
+     ylab="Dichte", xlim=c(0,25), freq=FALSE)
+par(cex=1)
 dev.off()
 
 
@@ -154,7 +178,10 @@ dev.off()
 # Falls Ausgabe auf Bildschirm gewünscht (anstelle Grafik im pdf Format),
 # dann nur den 'boxplot' Befehl ausführen
 pdf("loes2_8_boxplot_nmqm_by_bj_cat.pdf")
-boxplot(daten$nmqm~daten$bj.cat, xlab=" ", ylab="Nettomiete pro qm")
+par(cex=1.5)
+boxplot(daten$nmqm~daten$bj.cat, xlab=" ", main="Boxplots Nettomiete pro qm",
+        ylab="Nettomiete pro qm")
+par(cex=1)
 dev.off()
 
 
@@ -209,7 +236,10 @@ dev.off()
 # Falls Ausgabe auf Bildschirm gewünscht (anstelle Grafik im pdf Format),
 # dann nur den 'boxplot' Befehl ausführen
 pdf("loes2_8_boxplot_nm_by_rooms.pdf")
-boxplot(daten$nm~daten$rooms, xlab="Anzahl Zimmer", ylab="Nettomiete")
+par(cex=1.5)
+boxplot(daten$nm~daten$rooms, main="Boxplots Nettomiete", 
+        xlab="Anzahl Zimmer", ylab="Nettomiete")
+par(cex=1)
 dev.off()
 
 
@@ -257,7 +287,10 @@ dev.off()
 # Falls Ausgabe auf Bildschirm gewünscht (anstelle Grafik im pdf Format),
 # dann nur den 'boxplot' Befehl ausführen
 pdf("loes2_8_boxplot_nmqm_by_rooms.pdf")
-boxplot(daten$nm~daten$rooms, xlab="Anzahl Zimmer", ylab="Nettomiete")
+par(cex=1.5)
+boxplot(daten$nmqm~daten$rooms, main="Boxplots Nettomiete pro qm", 
+        xlab="Anzahl Zimmer", ylab="Nettomiete")
+par(cex=1)
 dev.off()
 
 
@@ -268,8 +301,10 @@ dev.off()
 # Falls Ausgabe auf Bildschirm gewünscht (anstelle Grafik im pdf Format),
 # dann nur die 'qqnorm' und 'qqline' Befehle ausführen
 pdf("loes2_8_hist_nmqm_qqplot.pdf")
+par(cex=1.5)
 qqnorm(daten$nmqm, xlab="theoretische Quantile", ylab="Stichprobenquantile")
 qqline(daten$nmqm)
+par(cex=1)
 dev.off()
 
 # Histogramm und Kerndichteschätzer
@@ -277,8 +312,10 @@ dev.off()
 # Falls Ausgabe auf Bildschirm gewünscht (anstelle Grafik im pdf Format),
 # dann nur die 'hist' und 'lines' Befehle ausführen
 pdf("loes2_8_hist_nmqm_kdens.pdf")
+par(cex=1.5)
 hist(daten$nmqm, main=" ", xlab="Nettomiete", ylab="Dichte", freq=FALSE)
 lines(density(daten$nmqm),col="black")
+par(cex=1)
 dev.off()
 
 # Histogramm und Normalverteilungsdichte
@@ -286,26 +323,24 @@ dev.off()
 # Falls Ausgabe auf Bildschirm gewünscht (anstelle Grafik im pdf Format),
 # dann den 'pdf' und 'dev.off()' Befehl weglassen.
 pdf("loes2_8_hist_nmqm_gauss.pdf")
+par(cex=1.5)
 hist(daten$nmqm, main=" ", xlab="Nettomiete", ylab="Dichte", freq=FALSE)
 mu <- mean(daten$nmqm)
 sigma <- sd(daten$nmqm)
 curve(dnorm(x,mean=mu,sd=sigma),from=mu - 4*sigma,to=mu + 4*sigma,add=TRUE)
+par(cex=1)
 dev.off()
-
 
 
 ################################ AUFGABE f) ####################################
 
-
 # Momentenkoeffizient der Schiefe und Wölbungsmaß nach Fisher 
 
 # Nettomiete
-moments::skewness(daten$nm)
+skewness(daten$nm)
 kurtosis(daten$nm)-3
 
 # Nettomiete pro qm
-moments::skewness(daten$nmqm)
+skewness(daten$nmqm)
 kurtosis(daten$nmqm)-3
-
-
 
