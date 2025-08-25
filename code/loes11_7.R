@@ -1,11 +1,11 @@
-##############################################################
+################################################################################
 # Lösung Aufgabe 11.7 
-##############################################################
+################################################################################
 
 # Lösche alle möglicherweise vorhandenen Objekte im Arbeitsbereich
 rm(list = ls())
 
-# Daten einlesen
+# Daten einlesen und im data.frame 'daten' speichern
 # Definiere n = Anzahl der Beobachtungen
 daten <- read.table(file="mietspiegel2015.txt", header=TRUE, dec=".")
 n <- nrow(daten)
@@ -16,7 +16,7 @@ mittel <- mean(daten$nmqm)
 stdabw <- sd(daten$nmqm)
 
 
-# Chi Quadrat Test mit 5 Intervallen
+##################### Chi Quadrat Test mit 5 Intervallen #######################
 
 # Definiere Intervalle 
 # mit Hilfe des cut-Befehls definieren wir die Faktorvariable nmqm.1
@@ -40,12 +40,11 @@ erg.1$statistic
 stat.1 <- sum( (table.1-n*erwartet.1)^2 / (n*erwartet.1) )
 stat.1
 
-
 # Bestimme den  p-Wert unter Beachtung der Freiheitsgrade Korrektur
 1-pchisq(erg.1$statistic, df=anzahl.intervalle.1-1-2)
 
 
-# Chi Quadrat Test mit 28 Intervallen
+################## Chi Quadrat Test mit 28 Intervallen #########################
 
 # Definiere Intervalle 
 # mit Hilfe des cut-Befehls definieren wir die Faktorvariable nmqm.2
@@ -71,7 +70,4 @@ stat.2
 
 # Bestimme den  p-Wert unter Beachtung der Freiheitsgrade Korrektur
 1-pchisq(erg.2$statistic, df=anzahl.intervalle.2-1-2)
-
-
-
 
