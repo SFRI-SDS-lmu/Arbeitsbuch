@@ -1,10 +1,11 @@
-##############################################################
+################################################################################
 # Lösung Aufgabe 9.7 
-##############################################################
+################################################################################
 
-# Aufgabe a)
 
-# Realisierte Werte im Vektor x zusammenfassen
+################################ AUFGABE a) ####################################
+
+# Realisierte Werte im Vektor 'x' zusammenfassen
 x <- c(2, 4, 6, 3)
 
 # Funktion zur Berechnung der Likelihood
@@ -38,8 +39,8 @@ poisson.loglikelihood(x,2)
 
 # Berechne Likelihood und Log-Likelihood für äquidistante lambda Werte
 # im Bereich 1-7 mit Schrittweite 0.05
-# Speichere die Werte der Likelihood im Vektor f und der Log-Likelihood 
-# im Vektor log.f
+# Speichere die Werte der Likelihood im Vektor 'f' und der Log-Likelihood 
+# im Vektor 'log.f'
 lambda <- seq(from=1, to=7, by=0.05)
 f <- numeric(length(lambda))
 log.f <- numeric(length(lambda))
@@ -78,7 +79,7 @@ dev.off()
 maxlik <- max(f)
 maxloglik <- max(log.f)
 
-# Bestimme den jeweiligen Index des Maximums in den Vektoren f und log.f
+# Bestimme den jeweiligen Index des Maximums in den Vektoren 'f' und 'log.f'
 ind.maxlik <- which.max(f)
 ind.maxloglik <- which.max(log.f)
 
@@ -90,18 +91,17 @@ lambda.maxlog <- lambda[ind.maxloglik]
 lambda.maxlog
 
 
+################################ AUFGABE b) ####################################
 
-# Aufgabe b
+# MAP Schätzer in Abhängigkeit von 'a' zeichnen
 
-# MAP Schätzer in Abhängigkeit von a zeichnen
-
-# Definiere Funktion map zur Berechnung des MAP für beliebige Werte von a
+# Definiere Funktion map zur Berechnung des MAP für beliebige Werte von 'a'
 map <- function(a){
   15/(4+a)
 }
 
-# Visualisiere den MAP in Abhängigkeit vom Parameter a
-# Verwende den curve Befehl
+# Visualisiere den MAP in Abhängigkeit vom Parameter 'a'
+# Verwende den 'curve' Befehl
 # ACHTUNG: 
 # Falls Ausgabe auf Bildschirm gewünscht (anstelle Grafik im pdf Format),
 # dann nur den curve Befehl ausführen
@@ -167,5 +167,4 @@ points(lambda,dichte_a1,type="l",lty=3)
 legend(3.6, 0.8, legend=c("a=4", "a=2", "a=1"), lty=1:3)
 par(cex=1)
 dev.off()
-
 
