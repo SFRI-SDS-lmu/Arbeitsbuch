@@ -1,3 +1,9 @@
+################################################################################
+# Lösung Aufgabe 7.8
+################################################################################
+
+
+############################### VORBEREITUNG ###################################
 
 # Lösche alle möglicherweise vorhandenen Objekte im Arbeitsbereich
 rm(list = ls())
@@ -5,10 +11,12 @@ rm(list = ls())
 # Für die Reproduzierbarkeit setzen wir einen seed
 set.seed(123)  
 
-# Aufgabe a) 
+
+################################ AUFGABE a) ####################################
+
 # Zunächst exemplarisch für n=100
 
-# Ziehe n=100 Zufallszahlen x aus einer B(100,0.5) Verteilung
+# Ziehe n=100 Zufallszahlen 'x' aus einer B(100,0.5) Verteilung
 n <- 100
 p <- 0.5
 x <- rbinom(n=n, size = n, prob = p)
@@ -21,10 +29,13 @@ relh<-table(x) / n
 # wird für diese und andere Werte in der Grafik keine Häufigkeit (von 0)
 # ausgegeben.
 
-# ACHTUNG: Für Ausgabe am Bildschirm nur den barplot Befehl ausführen
+# ACHTUNG: 
+# Falls Ausgabe auf Bildschirm gewünscht (anstelle Grafik im pdf Format),
+# dann nur den 'barplot' Befehl ausführen
 pdf("loes7_8_barplot_bsp1.pdf")
 par(cex=1.5)
 barplot(relh, xlab="Anzahl Erfolge", ylab="Relative Häufigkeit")
+par(cex=1)
 dev.off()
 
 
@@ -35,11 +46,14 @@ alle_werte <- as.character(0:n)
 relh_gesamt <- setNames(rep(0, length(alle_werte)), alle_werte)
 relh_gesamt[names(relh)] <- relh
 
-# ACHTUNG: Für Ausgabe am Bildschirm nur den barplot Befehl ausführen
+# ACHTUNG: 
+# Falls Ausgabe auf Bildschirm gewünscht (anstelle Grafik im pdf Format),
+# dann nur den 'barplot' Befehl ausführen
 pdf("loes7_8_barplot_bsp2.pdf")
 par(cex=1.5)
 barplot(relh_gesamt, xlab="Anzahl Erfolge", 
 ylab="Relative Häufigkeit",xlim=c(0,n))
+par(cex=1)
 dev.off()
 
 
@@ -47,11 +61,14 @@ dev.off()
 werte <- 0:n
 wkeiten<- dbinom(werte, size = n, prob = p)
 
-# ACHTUNG: Für Ausgabe am Bildschirm nur den barplot Befehl ausführen
+# ACHTUNG: 
+# Falls Ausgabe auf Bildschirm gewünscht (anstelle Grafik im pdf Format),
+# dann nur den 'barplot' Befehl ausführen
 pdf("loes7_8_barplot_bsp2_2.pdf")
 par(cex=1.5)
 barplot(wkeiten, names.arg=werte, xlab="Anzahl Erfolge", 
 ylab="Wahrscheinlichkeit")
+par(cex=1)
 dev.off()
 
 
@@ -61,14 +78,18 @@ barplot(relh_gesamt, xlab="Anzahl Erfolge", ylab="Relative Häufigkeit",xlim=c(0
 barplot(wkeiten, names.arg=werte,  xlab="Anzahl Erfolge", ylab="Wahrscheinlichkeit")
 par(mfrow = c(1, 1)) # Standardeinstellung für Grafiken wiederherstellen
 
-# Alternative 2: relative Häufigkeiten und Wahrscheinlichkeiten in einer Grafik darstellen
+# Alternative 2: 
+# Relative Häufigkeiten und Wahrscheinlichkeiten in einer Grafik darstellen
 
-# ACHTUNG: Für Ausgabe am Bildschirm nur den plot und points Befehl ausführen
+# ACHTUNG: 
+# Falls Ausgabe auf Bildschirm gewünscht (anstelle Grafik im pdf Format),
+# dann nur jeweils den 'plot' und 'points' Befehl ausführen
 pdf("loes7_8_barplot_bsp3.pdf")
 par(cex=1.5)
 plot(alle_werte,relh_gesamt,col="black",xlab="Anzahl Erfolge", 
 ylab="Relative Häufigkeit / W.keit")
 points(alle_werte,wkeiten,col="grey",xlab="Anzahl Erfolge")
+par(cex=1)
 dev.off()
 
 
@@ -94,59 +115,83 @@ plot.vergleich <- function(n,p) {
 
 # Verwende die Funktion für n=10,100,1000,10000
 
-# ACHTUNG: Für Ausgabe am Bildschirm nur den plot.vergleich Befehl ausführen
+# ACHTUNG: 
+# Falls Ausgabe auf Bildschirm gewünscht (anstelle Grafik im pdf Format),
+# dann nur jeweils den 'plot' Befehl ausführen
 pdf("loes7_8_vergleich_n10.pdf")
 par(cex=1.5)
 plot.vergleich(10,0.5)
+par(cex=1)
 dev.off()
 
-# ACHTUNG: Für Ausgabe am Bildschirm nur den plot.vergleich Befehl ausführen
+# ACHTUNG: 
+# Falls Ausgabe auf Bildschirm gewünscht (anstelle Grafik im pdf Format),
+# dann nur jeweils den 'plot' Befehl ausführen
 pdf("loes7_8_vergleich_n100.pdf")
 par(cex=1.5)
 plot.vergleich(100,0.5)
+par(cex=1)
 dev.off()
 
-# ACHTUNG: Für Ausgabe am Bildschirm nur den plot.vergleich Befehl ausführen
+# ACHTUNG: 
+# Falls Ausgabe auf Bildschirm gewünscht (anstelle Grafik im pdf Format),
+# dann nur jeweils den 'plot' Befehl ausführen
 pdf("loes7_8_vergleich_n1000.pdf")
 par(cex=1.5)
 plot.vergleich(1000,0.5)
+par(cex=1)
 dev.off()
 
-# ACHTUNG: Für Ausgabe am Bildschirm nur den plot.vergleich Befehl ausführen
+# ACHTUNG: 
+# Falls Ausgabe auf Bildschirm gewünscht (anstelle Grafik im pdf Format),
+# dann nur jeweils den 'plot' Befehl ausführen
 pdf("loes7_8_vergleich_n10000.pdf")
 par(cex=1.5)
 plot.vergleich(10000,0.5)
+par(cex=1)
 dev.off()
 
 
-# Aufgabe b)
+################################ AUFGABE b) ####################################
 
-# ACHTUNG: Für Ausgabe am Bildschirm nur den plot.vergleich Befehl ausführen
+# ACHTUNG: 
+# Falls Ausgabe auf Bildschirm gewünscht (anstelle Grafik im pdf Format),
+# dann nur jeweils den 'plot' Befehl ausführen
 pdf("loes7_8_vergleich2_n10.pdf")
 par(cex=1.5)
 plot.vergleich(10,0.51)
+par(cex=1)
 dev.off()
 
-# ACHTUNG: Für Ausgabe am Bildschirm nur den plot.vergleich Befehl ausführen
+# ACHTUNG: 
+# Falls Ausgabe auf Bildschirm gewünscht (anstelle Grafik im pdf Format),
+# dann nur jeweils den 'plot' Befehl ausführen
 pdf("loes7_8_vergleich2_n100.pdf")
 par(cex=1.5)
 plot.vergleich(100,0.51)
+par(cex=1)
 dev.off()
 
-# ACHTUNG: Für Ausgabe am Bildschirm nur den plot.vergleich Befehl ausführen
+# ACHTUNG: 
+# Falls Ausgabe auf Bildschirm gewünscht (anstelle Grafik im pdf Format),
+# dann nur jeweils den 'plot' Befehl ausführen
 pdf("loes7_8_vergleich2_n1000.pdf")
 par(cex=1.5)
 plot.vergleich(1000,0.51)
+par(cex=1)
 dev.off()
 
-# ACHTUNG: Für Ausgabe am Bildschirm nur den plot.vergleich Befehl ausführen
+# ACHTUNG: 
+# Falls Ausgabe auf Bildschirm gewünscht (anstelle Grafik im pdf Format),
+# dann nur jeweils den 'plot' Befehl ausführen
 pdf("loes7_8_vergleich2_n10000.pdf")
 par(cex=1.5)
 plot.vergleich(10000,0.51)
+par(cex=1)
 dev.off()
 
 
-# Aufgabe c)
+################################ AUFGABE c) ####################################
 
 # Simuliere Poisson verteilte Zufallszahlen
 n <- 1000
@@ -171,5 +216,4 @@ plot(density(differenz))
 hist(differenz)
 plot(density(produkt))
 hist(produkt)
-
 
